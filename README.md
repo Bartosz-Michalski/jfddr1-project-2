@@ -4,6 +4,12 @@ Repozytorium dla Projektu nr 2.
 
 ## Do zrobienia
 
+1. Pokaz slajdów
+2. Kontener z zakładkami
+3. Akordeon
+4. Notatnik
+
+
 ### Tematy do wyboru
 
 - Pokaz slajdów
