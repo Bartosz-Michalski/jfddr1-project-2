@@ -26,8 +26,47 @@ cards = [...cards]; // 18 div-ów
 // Chcemy, aby po starcie gry, a w naszym przypadku jest to wejście na stronę, był liczony czas. Odwołujemy się do wbudowanego obiektu Date i metodę .getTime(), która liczy czas w milisekundach od 01.01.1970 roku
 const startTime = new Date().getTime();
 
+// Za każdym razem, kiedy klikniemy na jakiś element (kartę) to powinniśmy mieć informację, który jest kliknięty. Domyślnie jest zmienna ta będzie pusta, ponieważ dopiero w funkcji będziemy określać, która jest z kart jest kliknięta.
+let activeCard = "";
+// Tworzymy zmienną, która będzie przechowywać dwa porównywane elementy (parę kart), taka mini gra, jeśli oba elementy w parze są takie same to wygrywamy, a jeśli nie to przegrywamy. Tworzymy więc tablicę, która na początku będzie pusta.
+const activeCards = [];
+
+// Musimy mieć też informacje o tym, ile mamy łącznie par, co będzie nam potrzebne do tego, aby stwierdzić kiedy gra jest skończona. Jeżeli mamy 9 par, to musimy osiągnąć 9 minizwycięstw, aby ukończyć całą grę.
+const gamePairs = cards.length / 2;
+// Tworzymy zmienną, która będzie przechowywać ilość minizwycięstw, czyli par, które udało nam się dopasować
+let gameResult = 0;
+
 //Deklarujemy funkcję, która będzie nam później potrzebna do nasłuchiwania kliknięcia w daną kartę
-const clickCard = function () {};
+const clickCard = function () {
+  // Oznaczamy to co zostało kliknięte
+  activeCard = this;
+  // Usuwamy klasę powodującą zasłonięcie, czyli hidden
+  activeCard.classList.remove("hidden");
+  // Sprawdzamy, czy to jest pierwsze kliknięcie, czyli, czy nasza tablica jest dalej pusta
+  if (activeCards.length === 0) {
+    // Jeśli jest to pierwsze kliknięcie, czyli nasza tablica jest pusta, to zapisujemy w indeksie 0 pierwszy element, który został kliknięty
+    activeCards[0] = activeCard;
+    return;
+  } else {
+    // Jeśli jest to drugie kliknięcie...
+    cards.forEach((card) => {
+      //...to musimy zablokować możliwość kliknięcia gdziekolwiek
+      card.removeEventListener("click", clickCard);
+    });
+    // Po kliknięciu w drugą kartę, dodajemy ją do naszych aktywnych kart
+    activeCards[1] = activeCard;
+    // Kiedy mamy aktywne (odkryte) dwie karty, to opóźniamy ich zasłonięcie, bądź wykluczenie z dalszej gry o 2 sekundy
+    setTimeout(function () {
+      if (activeCards[0].className === activeCards[1].className) {
+        // Jeśli wygrana, tzn. obie odkryte są tego samo koloru, to dodaj klasę wykluczającą te karty z dalszej gry, czyli off
+        activeCards.forEach((card) => card.classList.add("off"));
+      } else {
+        // Jeśli przegrana, tzn. obie odkryte są innego koloru, to dodaj klasę powodującą zasłonięcie, czyli hidden
+        activeCards.forEach((card) => card.classList.add("hidden"));
+      }
+    }, 2000);
+  }
+};
 
 // Tworzymy funkcję, która będzie odpowiedzialna za inicjalizację gry
 const init = function () {
