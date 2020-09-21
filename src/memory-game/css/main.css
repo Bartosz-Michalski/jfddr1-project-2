@@ -13,7 +13,7 @@ div {
   flex-basis: 15%;
   flex-grow: 1;
   height: 33.33vh;
-  background: rgb(82, 82, 82);
+  /* background: rgb(82, 82, 82); */
   border: 3px rgb(255, 255, 255) solid;
 }
 
@@ -45,7 +45,7 @@ div {
 }
 
 .gray {
-  background-color: gray;
+  background-color: rgb(168, 168, 168);
 }
 
 .lightgreen {
@@ -61,9 +61,9 @@ div {
 }
 
 .hidden {
-  background: rgb(82, 82, 82);
+  background: rgb(48, 48, 48);
 }
 
 .off {
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(216, 216, 216);
 }
