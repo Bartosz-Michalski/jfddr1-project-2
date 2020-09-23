@@ -40,6 +40,9 @@ let gameResult = 0;
 const clickCard = function () {
   // Oznaczamy to co zostało kliknięte
   activeCard = this;
+  // Bug1 - Musimy wykluczyć możliwość kliknięcia w tę samą kartą, co podowuje dopasowanie pary. Poniższy zapis sprawia, że klikanie w ten sam element nie będzie miało żadnych konsekwencji.
+  if (activeCard == activeCards[0]) return;
+
   // Usuwamy klasę powodującą zasłonięcie, czyli hidden
   activeCard.classList.remove("hidden");
   // Sprawdzamy, czy to jest pierwsze kliknięcie, czyli, czy nasza tablica jest dalej pusta
