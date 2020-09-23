@@ -63,6 +63,8 @@ const clickCard = function () {
         activeCards.forEach((card) => card.classList.add("off"));
         // Jeśli wygrana, to musimy zwiększyć rezultat gry
         gameResult++;
+        // Bug 2 - Wyszystkie karty, które zostały już sparowane, czyli mają klasę off, musimy wyrzucić z tablicy cards (metoda filter podowuje, że jeśli to co napiszemy w funkcji będzie true, to ten element zostanie dopisany do tablicy)
+        cards = cards.filter((card) => !card.classList.contains("off"));
         //Sprawdzamy,cz w tym miejscu nasz gra się zakończyła
         if (gameResult == gamePairs) {
           console.log("BRAWO! WYGRAŁEŚ!");
@@ -71,7 +73,7 @@ const clickCard = function () {
           // Obliczamy długość trwania rozgrywki
           const gameTime = (endTime - startTime) / 1000;
           // Wyświetlamy gratulacje i długość trwania rozgrywki
-          alert(`Brawo! Wygrałeś! Twój wynik to : ${gameTime}`);
+          alert(`Brawo! Udało Ci się wygrać w : ${gameTime} sekund!`);
           // Przeładowujemy grę
           location.reload();
         }
@@ -87,7 +89,7 @@ const clickCard = function () {
       activeCards.length = 0;
       // ...musimy włączyć z powrotem nasłuchiwanie na nasze elementy (karty)
       cards.forEach((card) => card.addEventListener("click", clickCard));
-    }, 1000);
+    }, 700);
   }
 };
 
