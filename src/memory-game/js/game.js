@@ -48,23 +48,29 @@ const clickCard = function () {
     activeCards[0] = activeCard;
     return;
   } else {
-    // Jeśli jest to drugie kliknięcie...
-    cards.forEach((card) => {
-      //...to musimy zablokować możliwość kliknięcia gdziekolwiek
-      card.removeEventListener("click", clickCard);
-    });
+    // Jeśli jest to drugie kliknięcie, to musimy zablokować możliwość kliknięcia gdziekolwiek poprzez removeEventListenera na click-a
+    cards.forEach((card) => card.removeEventListener("click", clickCard));
     // Po kliknięciu w drugą kartę, dodajemy ją do naszych aktywnych kart
     activeCards[1] = activeCard;
     // Kiedy mamy aktywne (odkryte) dwie karty, to opóźniamy ich zasłonięcie, bądź wykluczenie z dalszej gry o 2 sekundy
     setTimeout(function () {
       if (activeCards[0].className === activeCards[1].className) {
         // Jeśli wygrana, tzn. obie odkryte są tego samo koloru, to dodaj klasę wykluczającą te karty z dalszej gry, czyli off
+        console.log("wygrana");
         activeCards.forEach((card) => card.classList.add("off"));
       } else {
         // Jeśli przegrana, tzn. obie odkryte są innego koloru, to dodaj klasę powodującą zasłonięcie, czyli hidden
+        console.log("przegrana");
         activeCards.forEach((card) => card.classList.add("hidden"));
       }
-    }, 2000);
+
+      // Niezależnie od tego, czy wygraliśmy, czy przegraliśmy (czyli, czy znaleźliśmy parę, bądź nie) to...
+      // ...musimy zresetować zeminną przechowującą ostatnie kliknięcie oraz tablicę przechowującą dwa elementy (czyli, żeby jej długość była równa 0)
+      activeCard = "";
+      activeCards.length = 0;
+      // ...musimy włączyć z powrotem nasłuchiwanie na nasze elementy (karty)
+      cards.forEach((card) => card.addEventListener("click", clickCard));
+    }, 1000);
   }
 };
 
