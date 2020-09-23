@@ -58,6 +58,20 @@ const clickCard = function () {
         // Jeśli wygrana, tzn. obie odkryte są tego samo koloru, to dodaj klasę wykluczającą te karty z dalszej gry, czyli off
         console.log("wygrana");
         activeCards.forEach((card) => card.classList.add("off"));
+        // Jeśli wygrana, to musimy zwiększyć rezultat gry
+        gameResult++;
+        //Sprawdzamy,cz w tym miejscu nasz gra się zakończyła
+        if (gameResult == gamePairs) {
+          console.log("BRAWO! WYGRAŁEŚ!");
+          // Pobieramy czas kiedy została ukończona gra
+          const endTime = new Date().getTime();
+          // Obliczamy długość trwania rozgrywki
+          const gameTime = (endTime - startTime) / 1000;
+          // Wyświetlamy gratulacje i długość trwania rozgrywki
+          alert(`Brawo! Wygrałeś! Twój wynik to : ${gameTime}`);
+          // Przeładowujemy grę
+          location.reload();
+        }
       } else {
         // Jeśli przegrana, tzn. obie odkryte są innego koloru, to dodaj klasę powodującą zasłonięcie, czyli hidden
         console.log("przegrana");
