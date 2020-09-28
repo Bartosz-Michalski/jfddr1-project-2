@@ -7,14 +7,42 @@
 body {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(230, 229, 229);
 }
 
-div {
+.game-stopwatch .game-stopwatch__display {
+  font-size: 50px;
+}
+
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
+  height: 700px;
+  gap: 10px;
+}
+
+.game-container__card {
   flex-basis: 15%;
   flex-grow: 1;
-  height: 33.33vh;
-  /* background: rgb(82, 82, 82); */
-  border: 3px rgb(255, 255, 255) solid;
+  height: 33.33%;
+  border: 1px rgb(0, 0, 0) solid;
+  border-radius: 15px;
+}
+
+#btn-start-game,
+#btn-ranking-list {
+  background-color: rgb(119, 241, 70);
+  border: rgb(0, 0, 0) 3px outset;
+  border-radius: 10px;
+  height: 40px;
+  width: 180px;
+  margin: 50px 100px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 @media (orientation: portrait) {
@@ -24,46 +52,67 @@ div {
   }
 }
 
-.red {
-  background-color: red;
+.card-agility {
+  background: url(../img/card-agility.png) no-repeat center;
+  background-color: rgb(219, 190, 214);
+  background-size: contain;
 }
 
-.blue {
-  background-color: blue;
+.card-speech {
+  background: url(../img/card-speech.png) no-repeat center;
+  background-color: rgb(118, 211, 218);
+  background-size: contain;
 }
 
-.yellow {
-  background-color: yellow;
+.card-rocket {
+  background: url(../img/card-rocket.png) no-repeat center;
+  background-color: rgb(214, 157, 91);
+  background-size: contain;
 }
 
-.green {
-  background-color: green;
+.card-money {
+  background: url(../img/card-money.png) no-repeat center;
+  background-color: rgb(195, 252, 129);
+  background-size: contain;
 }
 
-.brown {
-  background-color: brown;
+.card-inelligence {
+  background: url(../img/card-inelligence.png) no-repeat center;
+  background-color: rgb(190, 206, 164);
+  background-size: contain;
 }
 
-.gray {
-  background-color: rgb(168, 168, 168);
+.card-guns {
+  background: url(../img/card-guns.png) no-repeat center;
+  background-color: rgb(182, 163, 146);
+  background-size: contain;
 }
 
-.lightgreen {
-  background-color: lightgreen;
+.card-fortune-finder {
+  background: url(../img/card-fortune-finder.png) no-repeat center;
+  background-color: rgb(247, 201, 75);
+  background-size: contain;
 }
 
-.cadetblue {
-  background-color: cadetblue;
+.card-zombie {
+  background: url(../img/card-zombie.png) no-repeat center;
+  background-color: rgb(250, 144, 112);
+  background-size: contain;
 }
 
-.violet {
-  background-color: violet;
+.card-special {
+  background: url(../img/card-specialpng) no-repeat center;
+  background-color: rgb(179, 124, 201);
+  background-size: contain;
 }
 
 .hidden {
-  background: rgb(48, 48, 48);
+  background: url(../img/card-status-hidden.jpeg) no-repeat center;
+  background-color: rgb(255, 227, 103);
+  background-size: contain;
 }
 
 .off {
-  background-color: rgb(216, 216, 216);
+  background: url(../img/card-status-off.png) no-repeat center;
+  background-size: contain;
 }
